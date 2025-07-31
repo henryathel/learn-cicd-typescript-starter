@@ -8,7 +8,7 @@ type thingy = {
 describe("test_getAPIKey", () => {
     test("this works", () => {
         const pp = {header: "oi"}
-        const outcome = getAPIKey(pp
+        const outcome = getAPIKey(pp)
         expect(outcome).toBeNull
     })
 }
