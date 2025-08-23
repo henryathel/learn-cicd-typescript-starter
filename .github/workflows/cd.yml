@@ -3,18 +3,19 @@ on:
     branches: [main]
 
   jobs:
-    name: Deploy
-    runs-on: ubuntu-latest
+    deploy:
+      name: Deploy
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v4
 
-      - name: Force Failure
-        run: node --version
+        - name: Force Failure
+          run: node --version
 
-      - name: Install dependencies
-        run: npm ci
+        - name: Install dependencies
+          run: npm ci
 
-      - name: Build
-        run: npm run build
+        - name: Build
+          run: npm run build
