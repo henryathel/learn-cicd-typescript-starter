@@ -30,16 +30,19 @@ jobs:
 
     steps:
 
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v3.0.0'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-      
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
-
     - name: Check out code
       uses: actions/checkout@v4
+
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v3.0.0'
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
 
     - name: 'Build Docker image'
       run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-470217/notely-ar-repo/notely:latest .
